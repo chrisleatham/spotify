@@ -22,6 +22,9 @@
 	<div ng-app="myApp" ng-controller="myCtrl">
     <div>
         <nav class="navbar navbar-static-top">
+        	<a href= "https://www.spotify.com/us/">
+        	<img class="appImg" id="logo" src="img/spotify-logo.jpg"></a>
+        	<img class="appImg" id="hipster" src="img/hipsteria.jpg">
         </nav>
         </div>
 		<!-- Form -->
@@ -31,17 +34,24 @@
 				<input name="search" placeholder="Enter your search.." ng-model="track" class="form-control ui-autocomplete-input"></input>
 			</div>
 			<div class="form-group">
-				<button ng-disabled="songForm.search.$invalid" class="btn btn-primary" ng-click="getSongs()" type="submit">Submit</button>
+				<button ng-disabled="songForm.search.$invalid" class="btn btn-success" ng-click="getSongs()" type="submit">Search</button>
 			</div>
 		</form>
 		
 		<!-- Results -->
 		<div class="container-fixed">
 			<p ng-show="tracks.length>0" class="help-block">Click to sample</p>
-        <div ng-class="track.preview_url == currentSong ? 'playing' : ''"  ng-repeat="track in tracks" class="col-xs-4 img"><img class="img-circle" ng-click="play(track.preview_url)" title="{{track.name}}" src="{{track.album.images[1].url}}"></img> <p class="" ng-click="play(track.preview_url)" title="{{track.name}}">{{track.name + ', by ' + track.artists[0].name}}</p></div>
+        <div ng-class="track.preview_url == currentSong ? 'playing' : '' " ng-repeat="track in tracks" class="col-xs-4 img"><img class="img-circle" ng-click="play(track.preview_url)" title="{{track.name}}" src="{{track.album.images[1].url}}"></img> <p class="" ng-click="play(track.preview_url)" title="{{track.name}}">{{track.name + ', by ' + track.artists[0].name}}</p></div>
 
 		</div>
 	</div>
 	</div>
+	<!-- <footer>
+		<div class="container">
+			<div class="row">
+				<p> Created by: Chris Leatham </p>
+			</div>
+		</div>
+	</footer> -->
 </body>
 </html>

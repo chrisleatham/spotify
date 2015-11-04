@@ -1,11 +1,17 @@
-@import url(https://fonts.googleapis.com/css?family=Amatic+SC:700);
 
-p {
-  font-style: Amatic
+.appImg {
+  width: 15%;
+  height: 15%;
 }
 
+
 body {
+  background-image: url("img/background.jpg");
+  background-size: 100%;
+  background-repeat: no-repeat;
   padding:10px;
+  color: white;
+
 }
 
 nav {
@@ -28,7 +34,6 @@ img {
   width:90%;
   margin-left:5%;
   text-align:center;
-  font-style: "Amatic"
 }
 
 .playing {
@@ -37,4 +42,8 @@ img {
 
 .img-circle {
   border-radius: 50%;
+}
+
+footer {
+  background-color: black;
 }
