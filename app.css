@@ -1,9 +1,9 @@
+@import url(https://fonts.googleapis.com/css?family=Amatic+SC:700);
 
 .appImg {
-  width: 15%;
-  height: 15%;
+  width: 25%;
+  height: 25%;
 }
-
 
 body {
   background-image: url("img/background.jpg");
@@ -11,11 +11,24 @@ body {
   background-repeat: no-repeat;
   padding:10px;
   color: white;
-
 }
 
 nav {
   background-color: black;
+}
+
+.description {
+  font-size: 30px;
+  font-family: 'Amatic SC', cursive;
+}
+
+.navbar a {
+  color: white;
+}
+
+.navbar a:hover {
+  text-decoration: none;
+  color: lightgreen;
 }
 
 .img {

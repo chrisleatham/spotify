@@ -1,57 +1,79 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Spotify Template</title>
-	
-	<!-- Include libraries -->
-	<script src="https://code.jquery.com/jquery.min.js"></script>
-	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.min.js"></script>
-	
-	<!-- Read scripts -->
-	<script src="app.js"></script>
-	<link href="app.css" type="text/css" rel="stylesheet"/>	
-	
+    <title>Spotify Template</title>
+    
+    <!-- Include libraries -->
+    <script src="https://code.jquery.com/jquery.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.min.js"></script>
+    <script src="//www.parsecdn.com/js/parse-1.6.0.min.js"></script>
+    
+    <!-- Read scripts -->
+    <script src="app.js"></script>
+    <script src="parse.js"></script>
+    <link href="app.css" type="text/css" rel="stylesheet"/> 
+    
 </head>
 <body>
-	<!-- Initiate app -->
-	<div ng-app="myApp" ng-controller="myCtrl">
+    <!-- Initiate app -->
+    <div ng-app="myApp" ng-controller="myCtrl">
     <div>
         <nav class="navbar navbar-static-top">
-        	<a href= "https://www.spotify.com/us/">
-        	<img class="appImg" id="logo" src="img/spotify-logo.jpg"></a>
-        	<img class="appImg" id="hipster" src="img/hipsteria.jpg">
+            <div class="col-xs-12 col-md-6">
+                <a href= "https://www.spotify.com/us/">
+                <img class="appImg" id="logo" src="img/spotify-logo.jpg"></a>
+                <img class="appImg" id="hipster" src="img/hipsteria.jpg">
+            </div>
+            <div class="col-md-6">
+            <p class="description" id="description">
+            Hipsteria is an application using Spotify's API that gives you an artist's least popular song to their most popular song. That way you can start listening to the songs by the one hit wonders that no one but you knows. Feel like the ultimate Hipster.
+            <a href="https://github.com/chrisleatham/spotify" class="description" id="codeLink">See the code here.</a>
+            </p>
+
+            </div>
         </nav>
         </div>
-		<!-- Form -->
-		<form class="container" name="songForm">
-			<div class="form-group">
-				<label>Spotify search:</label>
-				<input name="search" placeholder="Enter your search.." ng-model="track" class="form-control ui-autocomplete-input"></input>
-			</div>
-			<div class="form-group">
-				<button ng-disabled="songForm.search.$invalid" class="btn btn-success" ng-click="getSongs()" type="submit">Search</button>
-			</div>
-		</form>
-		
-		<!-- Results -->
-		<div class="container-fixed">
-			<p ng-show="tracks.length>0" class="help-block">Click to sample</p>
-        <div ng-class="track.preview_url == currentSong ? 'playing' : '' " ng-repeat="track in tracks | orderBy:'popularity'" class="col-xs-4 img"><img class="img-circle" ng-click="play(track.preview_url)" title="{{track.name}}" src="{{track.album.images[1].url}}"></img> <p class="" ng-click="play(track.preview_url)" title="{{track.name}}">{{track.name + ', by ' + track.artists[0].name + track.popularity}}</p></div>
+        <!-- Form -->
+        <form class="container" name="songForm">
+            <div class="form-group">
+                <label>Spotify search:</label>
+                <input name="search" placeholder="Search for an Artist..." ng-model="track" class="form-control ui-autocomplete-input" ng-minlength="3" id="artist"></input>
+                <p ng-show="songForm.search.$error.minlength" ng-required="true" class='help-block'>Search must be at least 3 characters</p>
+            </div>
+            <div class="form-group">
+                <button ng-disabled="songForm.search.$invalid" class="btn btn-success" ng-click="getSongs()" type="submit">Search</button>
+            </div>
+        </form>
+        
+        <!-- Results -->
+        <div class="container-fixed">
+            <p ng-show="tracks.length>0" class="help-block">Click to sample</p>
+            <div ng-class="track.preview_url == currentSong ? 'playing' : '' " ng-repeat="track in tracks | orderBy:'popularity'" class="col-xs-4 img"><img class="img-circle" ng-click="play(track.preview_url)" title="{{track.name}}" src="{{track.album.images[1].url}}"></img> <p class="" ng-click="play(track.preview_url)" title="{{track.name}}">{{track.name + ', by ' + track.artists[0].name}}</p>
+        </div>
 
-		</div>
-	</div>
-	</div>
-	<!-- <footer>
-		<div class="container">
-			<div class="row">
-				<p> Created by: Chris Leatham </p>
-			</div>
-		</div>
-	</footer> -->
+        </div>
+    </div>
+    </div>
+    <div class="container">
+        <div class="rows">
+            <div class="col-xs-12">
+                <p>See what other Hipsters are listening to:
+                <ol id ="list">
+                </ol>
+            </div>
+        </div>
+    </div>
+    <!-- <footer>
+        <div class="container">
+            <div class="row">
+                <p> Created by: Chris Leatham </p>
+            </div>
+        </div>
+    </footer> -->
 </body>
 </html>
