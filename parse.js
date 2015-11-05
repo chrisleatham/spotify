@@ -11,11 +11,11 @@ $('form').submit(function() {
  
   
   $(this).find('input').each(function(){
-    music.set($(this).attr('id'), $(this).val());
+    artist.set($(this).attr('id'), $(this).val());
     $(this).val('');
   })
 
-  music.save(null, {
+  artist.save(null, {
     success:getData
   })
   return false
