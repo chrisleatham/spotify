@@ -2,10 +2,15 @@
 
 var data;
 var baseUrl = 'https://api.spotify.com/v1/search?type=track&query='
-var myApp = angular.module('myApp', [])
+var myApp = angular.module('myApp', ['firebase'])
 
 
-var myCtrl = myApp.controller('myCtrl', function($scope, $http) {
+
+var myCtrl = myApp.controller('myCtrl', function($scope, $http, $firebaseAuth, $firebaseArray, $firebaseObject) {
+
+  var ref = new Firebase('https://spotify-cl.firebaseio.com/');
+  var artistRef = ref.child('artist');
+
   $scope.audioObject = {}
   $scope.getSongs = function() {
     $http.get(baseUrl + $scope.track).success(function(response){
@@ -25,6 +30,20 @@ var myCtrl = myApp.controller('myCtrl', function($scope, $http) {
       $scope.audioObject.play()  
       $scope.currentSong = song
     }
+
+  $scope.artist = $firebaseArray(artistRef);
+  $scope.authOj = $firebaseAuth(ref);
+
+  $scope.list = function() {
+    $scope.artist.$add({
+      text:$scope.artist
+    })
+
+    .then(function() {
+      $scope.artist = ''
+    })
+  }
+
   }
 })
 

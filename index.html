@@ -11,11 +11,13 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.min.js"></script>
-    <script src="//www.parsecdn.com/js/parse-1.6.0.min.js"></script>
-    
+    <!-- Firebase -->
+    <script src="https://cdn.firebase.com/.../firebase.js"></script>
+
+    <!-- AngularFire -->
+    <script src="https://cdn.firebase.com/.../1.1.3/angularfire.js"></script>
     <!-- Read scripts -->
     <script src="app.js"></script>
-    <script src="parse.js"></script>
     <link href="app.css" type="text/css" rel="stylesheet"/> 
     
 </head>
@@ -63,8 +65,13 @@
         <div class="rows">
             <div class="col-xs-12">
                 <p>See what other Hipsters are listening to:
-                <ol id ="list">
-                </ol>
+                <div>
+                    <div class="artists" ng-repeat="artist in artists | orderBy : '-time'">
+                        <div class="artist">
+                            {{artist.text}}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
