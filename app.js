@@ -11,6 +11,18 @@ var myCtrl = myApp.controller('myCtrl', function($scope, $http, $firebaseAuth, $
   var ref = new Firebase('https://spotify-cl.firebaseio.com/');
   var artistRef = ref.child('artist');
 
+  $scope.artist = $firebaseArray(artistRef);
+
+  $scope.list = function() {
+    $scope.artist.$add({
+      text:$scope.artist
+    })
+
+    .then(function() {
+      $scope.artist = ''
+    })
+  }
+
   $scope.audioObject = {}
   $scope.getSongs = function() {
     $http.get(baseUrl + $scope.track).success(function(response){
@@ -30,20 +42,6 @@ var myCtrl = myApp.controller('myCtrl', function($scope, $http, $firebaseAuth, $
       $scope.audioObject.play()  
       $scope.currentSong = song
     }
-
-  $scope.artist = $firebaseArray(artistRef);
-  $scope.authOj = $firebaseAuth(ref);
-
-  $scope.list = function() {
-    $scope.artist.$add({
-      text:$scope.artist
-    })
-
-    .then(function() {
-      $scope.artist = ''
-    })
-  }
-
   }
 })
 
