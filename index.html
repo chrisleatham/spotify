@@ -51,14 +51,16 @@
                 <p ng-show="songForm.search.$error.minlength" ng-required="true" class='help-block'>Search must be at least 3 characters</p>
             </div>
             <div class="form-group">
-                <button ng-disabled="songForm.search.$invalid" class="btn btn-success" ng-click="getSongs()" type="submit">Search</button>
+                <button ng-disabled="songForm.search.$invalid" class="btn btn-success" ng-click="getSongs(track)" type="submit">Search</button>
             </div>
         </form>
         
         <!-- Results -->
         <div class="container-fixed">
             <p ng-show="tracks.length>0" class="help-block">Click to sample</p>
-            <div ng-repeat="track in tracks | orderBy:'popularity'" class="col-xs-4 img"><img ng-class="track.preview_url == currentSong ? 'playing' : '' " class="img-circle" ng-click="play(track.preview_url)" title="{{track.name}}" src="{{track.album.images[1].url}}"></img> <p class="" ng-click="play(track.preview_url)" title="{{track.name}}">{{track.name + ', by ' + track.artists[0].name}}</p>
+            <div ng-repeat="track in tracks | orderBy:'popularity'" class="col-xs-4 img">
+            <img ng-class="track.preview_url == currentSong ? 'playing' : '' " class="img-circle" ng-click="play(track.preview_url)" title="{{track.name}}" ng-src="{{track.album.images[1].url}}">
+            <p class="" ng-click="play(track.preview_url)" title="{{track.name}}">{{track.name + ', by ' + track.artists[0].name}}</p>
             </div>
         </div>
     </div>
@@ -70,9 +72,9 @@
             <div class="col-xs-12">
                 <p>See what other Hipsters are listening to:
                 <div>
-                    <div class="artists" ng-repeat="artist in artists | orderBy : '-time'">
+                    <div class="artists" ng-repeat="listArray in listArray | orderBy : '-time'">
                         <div class="artist">
-                            <span class="artists">{{artist.text}}</span>
+                            <span class="artists">{{}}</span>
                         </div>
                     </div>
                 </div>

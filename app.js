@@ -9,13 +9,21 @@ var myApp = angular.module('myApp', ['firebase'])
 var myCtrl = myApp.controller('myCtrl', function($scope, $http, $firebaseAuth, $firebaseArray, $firebaseObject) {
 
   var ref = new Firebase('https://spotify-cl.firebaseio.com/');
-  var artistRef = ref.child('artist');
+   var artistRef = ref.child('artist');
 
-  $scope.artist = $firebaseArray(artistRef);
+
+  $scope.artists = $firebaseArray(artistRef);
+
+  $scope.audioObject = {}
+
+  $scope.getSongs = function(track) {
+    ref.push({'listArray': track})
+
+//upload to firebase. 
 
   $scope.list = function() {
     $scope.artist.$add({
-      text:$scope.artist
+      text: track
     })
 
     .then(function() {
@@ -23,11 +31,9 @@ var myCtrl = myApp.controller('myCtrl', function($scope, $http, $firebaseAuth, $
     })
   }
 
-  $scope.audioObject = {}
-  $scope.getSongs = function() {
+
     $http.get(baseUrl + $scope.track).success(function(response){
-      data = $scope.tracks = response.tracks.items
-      
+      $scope.tracks = response.tracks.items;      
     })
   }
   $scope.play = function(song) {
@@ -43,6 +49,11 @@ var myCtrl = myApp.controller('myCtrl', function($scope, $http, $firebaseAuth, $
       $scope.currentSong = song
     }
   }
+
+  ref.on('value', function(snapshot){
+    console.log(snapshot.val());
+  })
+
 })
 
 
@@ -50,3 +61,4 @@ var myCtrl = myApp.controller('myCtrl', function($scope, $http, $firebaseAuth, $
 $('body').tooltip({
     selector: '[title]'
 });
+
