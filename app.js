@@ -1,18 +1,14 @@
 
-
-var data;
 var baseUrl = 'https://api.spotify.com/v1/search?type=track&query='
+
+// Initiate app
 var myApp = angular.module('myApp', ['firebase'])
 
 
-
+// Initiate controller
 var myCtrl = myApp.controller('myCtrl', function($scope, $http, $firebaseAuth, $firebaseArray, $firebaseObject) {
 
   var ref = new Firebase('https://spotify-cl.firebaseio.com/');
-  // var artistRef = ref.child('artist');
-
-
-  // $scope.artists = $firebaseArray(artistRef);
 
   $scope.audioObject = {}
 
@@ -31,11 +27,12 @@ var myCtrl = myApp.controller('myCtrl', function($scope, $http, $firebaseAuth, $
     })
   }
 
-
     $http.get(baseUrl + $scope.track).success(function(response){
       $scope.tracks = response.tracks.items;      
     })
   }
+  
+  // Function for playing and pausing music
   $scope.play = function(song) {
     if($scope.currentSong == song) {
       $scope.audioObject.pause()
@@ -50,7 +47,7 @@ var myCtrl = myApp.controller('myCtrl', function($scope, $http, $firebaseAuth, $
     }
   }
 
-  
+// Pulling data from firebase
 ref.on("value", function(snapshot) {
   $scope.returnedData = snapshot.val();
   console.log(snapshot.val());
@@ -58,16 +55,6 @@ ref.on("value", function(snapshot) {
   console.log("The read failed: " + errorObject.code);
 });
 
-  // ref.on('value', function(snapshot){
-  //   $scope.returnedData = snapshot.val();
-  //   console.log("blah: " + snapshot.key);
-  // })
 
 })
-
-
-// Add tool tips to anything with a title property
-$('body').tooltip({
-    selector: '[title]'
-});
 
