@@ -1,3 +1,4 @@
+/* Font and animation imports */
 @import url(https://fonts.googleapis.com/css?family=Amatic+SC:700);
 @-webkit-keyframes rotate {
   from {
@@ -8,6 +9,7 @@
   }
 }
 
+/* Navigation Bar */
 .appImg {
   width: 25%;
   height: 25%;
@@ -38,6 +40,7 @@ nav {
   color: lightgreen;
 }
 
+/* Songs */
 .img {
   margin-bottom:20px;
   padding:10px; 
@@ -70,13 +73,14 @@ img {
 }
 
 
-
+/* SVG */
 .created {
   margin-top: auto;
   margin-left: auto;
 
 }
 
+/* For desktops */
 @media only screen and (min-width: 992px) {
   body {
     background-image: url("img/background.jpg");
