@@ -9,15 +9,15 @@ var myApp = angular.module('myApp', ['firebase'])
 var myCtrl = myApp.controller('myCtrl', function($scope, $http, $firebaseAuth, $firebaseArray, $firebaseObject) {
 
   var ref = new Firebase('https://spotify-cl.firebaseio.com/');
-   var artistRef = ref.child('artist');
+  // var artistRef = ref.child('artist');
 
 
-  $scope.artists = $firebaseArray(artistRef);
+  // $scope.artists = $firebaseArray(artistRef);
 
   $scope.audioObject = {}
 
   $scope.getSongs = function(track) {
-    ref.push({'listArray': track})
+    ref.push({'query': track})
 
 //upload to firebase. 
 
@@ -50,9 +50,18 @@ var myCtrl = myApp.controller('myCtrl', function($scope, $http, $firebaseAuth, $
     }
   }
 
-  ref.on('value', function(snapshot){
-    console.log(snapshot.val());
-  })
+  
+ref.on("value", function(snapshot) {
+  $scope.returnedData = snapshot.val();
+  console.log(snapshot.val());
+}, function (errorObject) {
+  console.log("The read failed: " + errorObject.code);
+});
+
+  // ref.on('value', function(snapshot){
+  //   $scope.returnedData = snapshot.val();
+  //   console.log("blah: " + snapshot.key);
+  // })
 
 })
 

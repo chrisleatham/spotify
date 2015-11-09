@@ -66,17 +66,16 @@
     </div>
 
     <!-- List -->
-    </div>
     <div class="container">
         <div class="rows">
             <div class="col-xs-12">
                 <p>See what other Hipsters are listening to:
                 <div>
-                    <div class="artists" ng-repeat="listArray in listArray | orderBy : '-time'">
-                        <div class="artist">
-                            <span class="artists">{{}}</span>
-                        </div>
-                    </div>
+                    
+                        <ul>
+                            <li ng-repeat="track in returnedData">{{returnedData.query}}</li>
+                        </ul>
+                    
                 </div>
             </div>
         </div>
