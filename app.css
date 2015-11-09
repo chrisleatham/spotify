@@ -1,4 +1,12 @@
 @import url(https://fonts.googleapis.com/css?family=Amatic+SC:700);
+@-webkit-keyframes rotate {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to { 
+    -webkit-transform: rotate(360deg);
+  }
+}
 
 .appImg {
   width: 25%;
@@ -51,14 +59,22 @@ img {
 
 .playing {
   border:5px solid lightgreen;
+    -webkit-animation-name:             rotate; 
+    -webkit-animation-duration:         1.0s; 
+    -webkit-animation-iteration-count:  infinite;
+    -webkit-animation-timing-function: linear;
 }
 
 .img-circle {
   border-radius: 50%;
 }
 
-footer {
-  background-color: black;
+
+
+.created {
+  margin-top: auto;
+  margin-left: auto;
+
 }
 
 @media only screen and (min-width: 992px) {
