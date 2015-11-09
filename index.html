@@ -8,12 +8,15 @@
     
     <!-- Included libraries -->
     <script src="https://code.jquery.com/jquery.min.js"></script>
+
+    <!-- Bootstrap -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.min.js"></script>
-    <!-- Firebase -->
-        <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.min.js"></script>
+
+    <!-- Firebase -->
+    <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
 
     <!-- AngularFire -->
         <script src="https://cdn.firebase.com/libs/angularfire/1.1.3/angularfire.min.js"></script>    <!-- Read scripts -->
@@ -26,21 +29,20 @@
     <div ng-app="myApp" ng-controller="myCtrl">
 
     <!-- Navigation bar -->
-    <div>
-        <nav class="navbar navbar-static-top">
-            <div class="col-xs-12 col-md-6">
-                <a href= "https://www.spotify.com/us/">
-                <img class="appImg" id="logo" src="img/spotify-logo.jpg"></a>
-                <img class="appImg" id="hipster" src="img/hipsteria.jpg">
-            </div>
-            <div class="col-md-6">
-            <p class="description" id="description">
-            Hipsteria is an application using Spotify's API that gives you an artist's least popular song to their most popular song. That way you can start listening to the songs by the one hit wonders that no one but you knows. Feel like the ultimate Hipster.
-            <a href="https://github.com/chrisleatham/spotify" class="description" id="codeLink">See the code here.</a>
-            </p>
-
-            </div>
-        </nav>
+        <div>
+            <nav class="navbar navbar-static-top">
+                <div class="col-xs-12 col-md-6">
+                    <a href= "https://www.spotify.com/us/">
+                    <img class="appImg" id="logo" src="img/spotify-logo.jpg"></a>
+                    <img class="appImg" id="hipster" src="img/hipsteria.jpg">
+                </div>
+                <div class="col-md-6">
+                    <p class="description" id="description">
+                    Hipsteria is an application using Spotify's API that gives you an artist's least popular song to their most popular song. That way you can start listening to the songs by the one hit wonders that no one but you knows. Feel like the ultimate Hipster.
+                    <a href="https://github.com/chrisleatham/spotify" class="description" id="codeLink">See the code here.</a>
+                    </p>
+                </div>
+            </nav>
         </div>
 
         <!-- Form -->
@@ -59,23 +61,23 @@
         <div class="container-fixed">
             <p ng-show="tracks.length>0" class="help-block">Click to sample</p>
             <div ng-repeat="track in tracks | orderBy:'popularity'" class="col-xs-4 img">
-            <img ng-class="track.preview_url == currentSong ? 'playing' : '' " class="img-circle" ng-click="play(track.preview_url)" title="{{track.name}}" ng-src="{{track.album.images[1].url}}">
-            <p class="" ng-click="play(track.preview_url)" title="{{track.name}}">{{track.name + ', by ' + track.artists[0].name}}</p>
+                <img ng-class="track.preview_url == currentSong ? 'playing' : '' " class="img-circle" ng-click="play(track.preview_url)" title="{{track.name}}" ng-src="{{track.album.images[1].url}}">
+                <p class="" ng-click="play(track.preview_url)" title="{{track.name}}">{{track.name + ', by ' + track.artists[0].name}}</p>
             </div>
         </div>
-    </div>
 
     <!-- List -->
-    <div class="container">
-        <div class="rows">
-            <div class="col-xs-12">
-                <p>See what other Hipsters are listening to:
-                <div>
-                    
-                        <ul>
-                            <li ng-repeat="track in returnedData">{{returnedData.query}}</li>
-                        </ul>
-                    
+        <div class="container">
+            <div class="rows">
+                <div class="col-xs-12">
+                    <p>See what other Hipsters are listening to:</p>
+                    <div>
+                        
+                            <ul>
+                                <li ng-repeat="track in returnedData">{{track.query}}</li>
+                            </ul>
+                        
+                    </div>
                 </div>
             </div>
         </div>
